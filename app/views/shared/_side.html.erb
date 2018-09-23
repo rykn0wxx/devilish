@@ -1,0 +1,14 @@
+<aside class="main-sidebar md-sidenav md-sidenav-left md-closed md-locked-open md-whiteframe-z2" tabindex="-1" data-md-sidenav="main-sidenav">
+	<header class="nav-header">
+		<%= link_to root_path, :class => "head-logo" do %>
+		  <h1 class="head-logotype md-headline"><b>admin</b>istrate</h1>
+		<% end %>
+	</header>
+	<div class="md-content flex">
+		<ul class="side-menu">
+			<%- Rykn0wxx::Scoper.new("main").routes.each do |route| -%>
+				<%= li_link_to route[:action], route %>
+			<%- end -%>
+		</ul>
+	</div>
+</aside>

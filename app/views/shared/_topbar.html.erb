@@ -1,0 +1,24 @@
+<header class="main-header md-toolbar _md-toolbar-transitions md-whiteframe-glow-z1 ">
+	<div class="md-toolbar-tools" tabindex="-1">
+		<% if show_sidebar? %>
+			<button class="md-button md-icon-button" data-md-sidenav-toggler="main-sidenav">
+				<%= mi.menu.css_class("md-icon") %>
+			</button>
+		<% end %>
+		<div class="layout-row fill-height flex">
+			<h2 class="md-toolbar-item md-breadcrumb md-headline">
+				<span class="md-breadcrumb-page">
+					Toolbar
+				</span>
+			</h2>
+			<span class="flex"></span>
+			<div class="md-toolbar-item layout-row">
+				<% if sys_user_signed_in? %>
+					<%= link_to destroy_sys_user_session_path, :method => :delete, :class => "md-icon-button md-button" do %>
+						<%= mi.wc.css_class("md-icon") %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,26 @@
+<% title "Login", false, false %>
+
+<div class="auth-box flex md-content layout-column" md-scroll-y>
+	<div class="auth-card md-whiteframe-8dp">
+		<div class="auth-logo">
+			<%= inline_svg("logo.svg", :class => "logo") %>
+		</div>
+		<p class="auth-msg">
+			Sign in to start your session.
+		</p>
+		<div class="row">
+			<%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "md-form col s12", :novalidate => true}  do |f| %>
+				<%= f.input :login, :required => true, :input_html => { :autocomplete => "off", :autofocus => false, :hint => false }, :icon => "person_outline", :wrapper_html => { :class => "md-icon-float md-icon-left" } %>
+				<%= f.input :password, :required => true, :icon => "lock", :input_html => { :autocomplete => "off", :hint => false }, :wrapper_html => { :class => "md-icon-float md-icon-left" } %>
+				<div class="form-actions">
+					<%= f.button :button, :class => "md-button" do %>
+					  Submit
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+		<div class="row external-actions">
+			<%= render "devise/shared/links" %>
+		</div>
+	</div>
+</div>
