@@ -57,7 +57,8 @@ p {
   font-weight: 400;
   letter-spacing: 0.010em;
   line-height: 1.6em;
-  margin: 0.8em 0 1.6em;
+  // margin: 0.8em 0 1.6em;
+	margin: 0 0 1em 0;
 }
 strong {
   font-weight: 500;
@@ -137,4 +138,17 @@ button, select, html, textarea, input {
 }
 select, button, textarea, input {
   font-size: 100%;
+}
+
+dl {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+dt {
+	font-weight: 700;
+}
+
+dd {
+	margin-bottom: 0.5rem;
+	margin-left: 0;
 }

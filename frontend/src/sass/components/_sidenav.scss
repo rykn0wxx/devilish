@@ -1,4 +1,4 @@
-$sidenav-mobile-width: 272px;
+$sidenav-mobile-width: 252px;
 $sidenav-desktop-width: 400px;
 $sidenav-min-space: 56px;
 
@@ -146,12 +146,12 @@ $sidenav-min-space: 56px;
 	// transition: $swift-ease-out;
 	transition: transform .3s ease-in-out,width .3s ease-in-out;
 	&.md-locked-open-add-active, &.md-locked-open {
-		width:     272px;
-	  min-width: 272px;
-	  max-width: 272px;
+		width:     $sidenav-mobile-width;
+	  min-width: $sidenav-mobile-width;
+	  max-width: $sidenav-mobile-width;
 	}
 	> * {
-		min-width: 218px;
+		min-width: $sidenav-mobile-width - 54px;
 	}
 	.side-menu, .side-menu ul {
 	  list-style: none;

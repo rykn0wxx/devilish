@@ -77,15 +77,18 @@ $icon-button-margin-offset: rem(-0.800) !default;
   }
 	.md-breadcrumb {
 	  font-size: 24px;
-	  font-weight: 400;
+	  font-weight: 500;
 		.md-icon {
-			color: #666;
-			fill: #666;
+			color: currentColor;
+			fill: currentColor;
 		}
 	}
 	.md-breadcrumb-page {
 	  display: inline-block;
 	  word-wrap: break-word;
+		&.sub-page {
+			font-weight: 400;
+		}
 	}
 	&.md-whiteframe-glow-z1 {
 		box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
@@ -166,6 +169,14 @@ $icon-button-margin-offset: rem(-0.800) !default;
     height: $md-toolbar-height-mobile-landscape;
     max-height: $md-toolbar-height-mobile-landscape;
   }
+}
+
+.menu-seperator {
+	transform: translate3d(0, 1px, 0);
+	margin: 0;
+	.md-icon {
+		margin-top: -2px;
+	}
 }
 
 // Toolbar Theme

@@ -16,4 +16,40 @@ module ApplicationHelper
 		end
 	end
 
+	def class_from_opt(resource_name)
+	  resource_name.to_s.classify.constantize
+	end
+
+	def show_resource_name(resource_name)
+	  class_from_opt(resource_name).
+			model_name.
+			human(
+				count: 2.1,
+				default: resource_name.to_s.pluralize.titleize
+			)
+	end
+
+	def toolbar_title(options = {})
+		tb_title = options[:main]
+		tb_sub = options[:sub] unless options[:sub].nil?
+	  content_for(:toolbar_title) do
+	  	toolbar_content(tb_title, tb_sub)
+	  end
+	end
+
+	private
+
+	def toolbar_content(title, sub)
+	  main = content_tag(:span, title.titleize, :class => 'md-breadcrumb-page')
+		if sub.nil?
+			main
+		else
+			seperator = content_tag(:span, :class => 'menu-seperator') do
+				content_tag(:i, 'chevron_right', :class => 'material-icons md-icon')
+			end
+			sub_menu = content_tag(:span, sub.titleize, :class => 'md-breadcrumb-page sub-page')
+			main + seperator + sub_menu
+		end
+	end
+
 end

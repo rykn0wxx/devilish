@@ -1,17 +1,16 @@
 module Rykn0wxx
 	class ImportResult
-		attr_reader :failed, :added, :updated, :header_key
+		attr_reader :failed, :processed, :header_key
 
 		def initialize(header_key = 'id')
 			@header_key = header_key.to_sym
 			@failed = []
-      @added = []
-			@updated = []
+      @processed = []
 		end
 
 		def add(chunk)
-		  @updated += chunk.select { |e| e.has_key?(@header_key) }
-		  @added += chunk.reject { |e| e.has_key?(@header_key) }
+			@failed += chunk[0].failed_instances
+		  @processed += chunk[1]
 		end
 
 	end

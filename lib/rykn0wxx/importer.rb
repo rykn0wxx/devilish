@@ -4,7 +4,7 @@ module Rykn0wxx
 		attr_reader :resource, :options, :result, :csv_file #csv_obj
 		attr_accessor :chunks, :headers
 
-		def initialize(resource, csv_file)
+		def initialize(resource = nil, csv_file = nil)
 		  @resource = resource
 			@csv_file = csv_file
 		end
@@ -18,9 +18,9 @@ module Rykn0wxx
 		end
 
 		def worker(chunk)
-			import_result.add(chunk)
-			batch_process
-			batch_update if import_result.updated.any?
+			batch_for_update = chunk.select { |e| e.has_key?(@header_key) }
+			import_result.add(batch_process(chunk))
+			puts batch_for_update if batch_for_update.any?
 		end
 
 		def import
@@ -31,10 +31,24 @@ module Rykn0wxx
 		protected
 
 		def process_file
-		  @chunks = SmarterCSV.process(file.path, assigned_options)
-			Parallel.map(chunks) do |chunk|
+			SmarterCSV.process(file.path, assigned_options) do |chunk|
 				worker(chunk)
 			end
+		end
+
+		def batch_process(chunk)
+			batch_result = nil
+			batch_added = to_be_added(chunk)
+			batch_headers = batch_added.map { |e| e.keys }.uniq.first
+			batch_headers.delete(:id)
+		  ActiveRecord::Base.connection.reconnect!
+			batch_result = @resource.import(batch_headers, batch_added, :validate => true)
+			raise ActiveRecord::Rollback if batch_result.failed_instances.any?
+			[batch_result, batch_added]
+		end
+
+		def to_be_added(chunk)
+		  chunk.reject { |e| e.has_key?(@header_key) }
 		end
 
 		def batch_update
@@ -48,15 +62,6 @@ module Rykn0wxx
 			@resource.transaction do
 				batch_result = resource.update(update_items.keys, update_items.values)
 				# raise ActiveRecord::Rollback if batch_result.failed_instances.any?
-			end
-			batch_result
-		end
-
-		def batch_process
-			batch_result = nil
-			@resource.transaction do
-				batch_result = resource.import(import_result.added, { :validate => true })
-				raise ActiveRecord::Rollback if batch_result.failed_instances.any?
 			end
 			batch_result
 		end

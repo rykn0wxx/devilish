@@ -35,3 +35,5 @@ gem 'devise'
 gem 'foreman'
 gem 'activerecord-import', '~> 0.25.0'
 gem 'webpacker', '~> 3.5', '>= 3.5.5'
+
+gem 'kaminari', '~> 1.1', '>= 1.1.1'

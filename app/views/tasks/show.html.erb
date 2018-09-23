@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @task.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @task.end_time %>
+</p>
+
+<p>
+  <strong>Sla type:</strong>
+  <%= @task.sla_type %>
+</p>
+
+<p>
+  <strong>Sla name:</strong>
+  <%= @task.sla_name %>
+</p>
+
+<p>
+  <strong>Task number:</strong>
+  <%= @task.task_number %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @task.duration %>
+</p>
+
+<p>
+  <strong>Stage:</strong>
+  <%= @task.stage %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

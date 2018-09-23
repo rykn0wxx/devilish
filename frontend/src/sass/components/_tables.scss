@@ -12,7 +12,7 @@ td, th {
 }
 
 table, th, td {
-   border: none;
+  border: none;
 }
 
 table {
@@ -57,7 +57,9 @@ td, th{
 }
 
 table.md-table {
-  margin-bottom: 16px;
+	width: 100%;
+	margin-bottom: 1rem;
+	background-color: $white;
   max-width: 100%;
   width: 100%;
   border-spacing: 0;
@@ -69,17 +71,17 @@ table.md-table {
 	  text-align: left;
 	}
 	td {
-	  vertical-align: top;
+	  vertical-align: middle;
 	}
 	> tbody > tr {
 		&:nth-child(odd) {
-			background-color: #E3ECF5;
+			background-color: rgba(#E3ECF5, 0.3);
 		}
 		&:nth-child(even) {
-			background-color: #D1DEEC;
+			background-color: rgba(#D1DEEC, 0.5);
 		}
 		&:hover {
-      background-color: $table-striped-hover-color;
+      background-color: rgba(0,0,0,.075);
     }
 	}
 	th {
@@ -90,4 +92,26 @@ table.md-table {
 		padding-top: 0;
 		padding-bottom: 0;
 	}
+	thead th {
+		border-bottom: 2px solid darken($p-light, 15%);
+	}
+	tbody td {
+		padding: 0.6rem 0.8rem;
+	}
+	.thead-dark th {
+		background-color: $p-dark;
+		border-color: mix(#666, $p-dark, 50%);
+		color: color-yiq($p-dark);
+	}
+	.thead-light th {
+		background-color: $p-light;
+		border-color: mix(#666, $p-dark, 50%);
+		color: color-yiq($p-light);
+	}
+}
+
+.responsive-table {
+	display: block;
+	width: 100%;
+	overflow-x: auto;
 }
