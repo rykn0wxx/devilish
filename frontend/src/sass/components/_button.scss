@@ -91,7 +91,7 @@ button.md-button::-moz-focus-inner {
   }
 
   &.md-raised {
-		background-color: #fafafa;
+		background-color: #f5f5f5;
 		color: #212121;
     &:not([disabled]) {
       @include md-shadow-bottom-z-1();
@@ -239,4 +239,32 @@ button.md-button.md-fab {
     line-height: $icon-size;
     width: auto;
   }
+}
+
+@each $z_color, $z_value in $z_colors {
+	$fg: color-yiq($z_value);
+	// $bg: mix(#fff, mix(#000, $z_value, 30%), 10%);
+	$bg: mix(#111, $z_value, 30%);
+
+	.md-button.md-#{$z_color} {
+		color: $z_value;
+		&.md-raised, &.md-fab {
+			color: $fg;
+			background-color: $z_value;
+			&:not([disabled]) {
+				.md-icon {
+          color: $fg;
+        }
+				&:hover, &:focus {
+          background-color: $bg;
+        }
+			}
+		}
+		&:not([disabled]) {
+			.md-icon {
+				color: $z_value;
+			}
+		}
+	}
+
 }

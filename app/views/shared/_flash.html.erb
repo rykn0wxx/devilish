@@ -6,8 +6,8 @@
 <%= javascript_tag type: "text/javascript" do -%>
 	setTimeout(function () {
 		let flashElem = $('body .flash-wrapper');
-		flashElem.fadeOut('slow', function () {
-			$(this).remove();
+		flashElem.fadeOut('slow', () => {
+			$(flashElem).remove();
 		});
 	},2500);
 <% end -%>
